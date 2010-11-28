@@ -7,6 +7,7 @@ This simple Rack server is useful as a self-hosted service for making lookups to
 
 * Clone this: `git clone git://github.com/JackDanger/geoip_server.git`
 * Download the free GeoIP data files: `rake geoip:update_city_lite`
+* Commit that data file to your clone: `git add vendor && git commit -m "adding data file"`
 * Signup for an account at Heroku ([better details here](http://github.com/sinatra/heroku-sinatra-app))
 * Create and name a new app where you want to host this
 * push it to Heroku.com: `git push heroku master`
