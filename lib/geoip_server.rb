@@ -4,7 +4,7 @@ require 'sinatra'
 require 'geoip'
 require 'json'
 
-
+data_file = File.expand_path(File.join(File.dirname(__FILE__), '..', 'vendor', 'GeoLiteCity.dat'))
 
 ## Application
 
@@ -15,8 +15,7 @@ get '/' do
       Lookup a location by IP address. Example:
       <pre style='font-family: Iconsolata, monospace;background-color:#EEE'>curl http://#{request.host}/207.97.227.239</pre>
       <br />
-      <form action=/ method=GET onsubmit='if(\"\"==this.url.value)return false;else{this.action=\"/\"+this.ip.value}'>
-        <label for='ip'>IP address: </label>
+      <form action=/ method=GET onsubmit='if(\"\"==this.ip.value)return false;else{this.action=\"/\"+this.ip.value}'>
         <input type=text name='ip' value='#{request.env['REMOTE_ADDR']}' />
         <input type=submit value='Lookup!' />
       </form>
@@ -28,9 +27,11 @@ end
 get '/:ip' do
   pass unless params[:ip] =~ /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/
 
-  data = GeoIP.new('vendor/GeoLiteCity.dat').city(params[:ip])
+  data = GeoIP.new(data_file).city(params[:ip])
 
   content_type 'application/json'
+
+  return "{}" unless data
 
   encode(data).to_json
 
