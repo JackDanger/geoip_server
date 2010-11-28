@@ -16,7 +16,7 @@ get '/' do
       <pre style='font-family: Iconsolata, monospace;background-color:#EEE'>curl http://#{request.host}/207.97.227.239</pre>
       <br />
       <form action=/ method=GET onsubmit='if(\"\"==this.ip.value)return false;else{this.action=\"/\"+this.ip.value}'>
-        <input type=text name='ip' value='#{request.env['REMOTE_ADDR']}' />
+        <input type=text name='ip' value='#{request.ip}' />
         <input type=submit value='Lookup!' />
       </form>
       <div>None of this would be possible without <a href='http://www.maxmind.com/app/geolitecity'>MaxMind</a></div>
