@@ -10,6 +10,7 @@ require 'json'
 
 get '/' do
   %Q{
+    <html><title>Detect a computer's location by IP address</title>
     <body style='line-height: 1.8em; font-family: Archer, Museo, Helvetica, Georgia; font-size 25px; text-align: center; padding-top: 20%;'>
       Lookup a location by IP address. Example:
       <pre style='font-family: Iconsolata, monospace;background-color:#EEE'>curl http://#{request.host}/207.97.227.239</pre>
@@ -19,7 +20,8 @@ get '/' do
         <input type=text name='ip' value='#{request.env['REMOTE_ADDR']}' />
         <input type=submit value='Lookup!' />
       </form>
-    </body
+      <div>None of this would be possible without <a href='http://www.maxmind.com/app/geolitecity'>MaxMind</a></div>
+    </body></html>
 }
 end
 
