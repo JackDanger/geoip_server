@@ -11,12 +11,12 @@ require 'json'
 get '/' do
   %Q{
     <body style='line-height: 1.8em; font-family: Archer, Museo, Helvetica, Georgia; font-size 25px; text-align: center; padding-top: 20%;'>
-      Get to '/' with an ip address to lookup the server location in JSON. Example:
+      Lookup a location by IP address. Example:
       <pre style='font-family: Iconsolata, monospace;background-color:#EEE'>curl http://#{request.host}/207.97.227.239</pre>
       <br />
       <form action=/ method=GET onsubmit='if(\"\"==this.url.value)return false;else{this.action=\"/\"+this.ip.value}'>
         <label for='ip'>IP address: </label>
-        <input type=text name='ip'/>
+        <input type=text name='ip' value='#{request.env['REMOTE_ADDR']}' />
         <input type=submit value='Lookup!' />
       </form>
     </body
