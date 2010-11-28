@@ -4,7 +4,7 @@ require 'rubygems'
 require 'test/unit'
 require 'shoulda'
 require 'rack/test'
-require File.expand_path(File.join(File.dirname(__FILE__), '../lib/geoip_server'))
+require File.expand_path(File.join(File.dirname(__FILE__), 'lib/geoip_server'))
 
 class GeoipServerTest < Test::Unit::TestCase
   include Rack::Test::Methods
