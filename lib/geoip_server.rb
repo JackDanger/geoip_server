@@ -2,6 +2,7 @@
 gem 'sinatra', :version => '1.0'
 require 'sinatra'
 require 'geoip'
+require 'i18n'
 require 'active_support'
 
 data_file = File.expand_path(File.join(File.dirname(__FILE__), '..', 'vendor', 'GeoLiteCity.dat'))
