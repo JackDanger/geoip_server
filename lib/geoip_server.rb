@@ -2,7 +2,7 @@
 gem 'sinatra', :version => '1.0'
 require 'sinatra'
 require 'geoip'
-require 'json'
+require 'active_support'
 
 data_file = File.expand_path(File.join(File.dirname(__FILE__), '..', 'vendor', 'GeoLiteCity.dat'))
 
@@ -34,7 +34,7 @@ get '/:ip' do
 
   return "{}" unless data
 
-  encode(data).to_json
+  ActiveSupport::JSON.encode(encode(data))
 
 end
 
