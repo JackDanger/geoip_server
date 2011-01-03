@@ -1,7 +1,22 @@
-source :rubygems
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activesupport (3.0.3)
+    geoip (0.8.8)
+    i18n (0.5.0)
+    newrelic_rpm (2.13.4)
+    rack (1.2.1)
+    sinatra (1.1.2)
+      rack (~> 1.1)
+      tilt (~> 1.2)
+    tilt (1.2.1)
 
-gem 'sinatra'
-gem 'activesupport'
-gem 'geoip'
-gem 'i18n'
-gem 'newrelic'
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activesupport
+  geoip
+  i18n
+  newrelic_rpm
+  sinatra
