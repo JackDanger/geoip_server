@@ -9,6 +9,16 @@ data_file = File.expand_path(File.join(File.dirname(__FILE__), '..', 'vendor', '
 
 ## Application
 
+configure :production do
+  ENV['APP_ROOT'] ||= File.dirname(__FILE__)
+  begin
+    $:.unshift "#{ENV['APP_ROOT']}/vendor/plugins/newrelic_rpm/lib"
+    require 'newrelic_rpm'
+  rescue LoadError
+  rescue
+  end
+end
+
 get '/' do
   %Q{
     <html><title>Detect a computer's location by IP address</title>
