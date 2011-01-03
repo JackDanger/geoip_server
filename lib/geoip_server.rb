@@ -30,7 +30,7 @@ get '/:ip' do
 
   data = GeoIP.new(data_file).city(params[:ip])
 
-  content_type 'application/json'
+  content_type 'application/json;charset=utf-8'
   headers['Cache-Control'] = "public; max-age=#{365*24*60*60}"
 
   return "{}" unless data
