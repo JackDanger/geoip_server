@@ -1,4 +1,4 @@
-sources :rubygems
+source :rubygems
 
 gem 'sinatra'
 gem 'activesupport'
