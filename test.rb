@@ -33,7 +33,6 @@ class GeoipServerTest < Test::Unit::TestCase
       assert last_response.ok?
     end
     should "return json content-type" do
-      assert_equal 'application/json', last_response.headers['Content-Type']
       assert_equal 'application/json;charset=ascii-8bit', last_response.headers['Content-Type']
     end
   end
