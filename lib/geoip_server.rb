@@ -45,10 +45,10 @@ get '/:ip' do
 
   return "{}" unless data
 
-  format(ActiveSupport::JSON.encode(encode(data)))
+  respond_with(ActiveSupport::JSON.encode(encode(data)))
 end
 
-def format json
+def respond_with json
   # jsonp support
   callback, variable = params[:callback], params[:variable]
   if callback && variable
