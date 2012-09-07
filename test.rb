@@ -32,8 +32,23 @@ class GeoipServerTest < Test::Unit::TestCase
     should "return ok" do
       assert last_response.ok?
     end
+    should "return json conent-type" do
+      assert_equal 'application/json;charset=ascii-8bit', last_response.headers['Content-Type']
+    end
+  end
+
+  context "on GET to /:ip?callback=myCallbackFunction" do
+    setup {
+      get '/67.161.92.71?callback=myCallbackFunction'
+    }
+    should "return ok" do
+      assert last_response.ok?
+    end
     should "return json content-type" do
       assert_equal 'application/json;charset=ascii-8bit', last_response.headers['Content-Type']
+    end
+    should "have a function as result" do
+      assert last_response.body =~ /myCallbackFunction\(\{.*\}\)/
     end
   end
 
