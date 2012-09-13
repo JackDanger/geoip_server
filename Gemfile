@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'sinatra', '1.1.2'
+gem 'sinatra', '~> 1.1'
 gem 'activesupport'
 gem 'geoip'
 gem 'i18n'
