@@ -65,33 +65,33 @@ end
 def encode data
   {
     # * The host or IP address string as requested
-    :ip => data.shift,
+    :ip => data.request,
     # * The IP address string after looking up the host
-    :ip_lookup => data.shift,
+    :ip_lookup => data.ip,
     # * The GeoIP country-ID as an integer
     # :country_id => data.shift,
     # * The ISO3166-1 two-character country code
-    :country_code => data.shift,
+    :country_code => data.country_code2,
     # * The ISO3166-2 three-character country code
-    :country_code_long => data.shift,
+    :country_code_long => data.country_code3,
     # * The ISO3166 English-language name of the country
-    :country => data.shift,
+    :country => data.country_name,
     # * The two-character continent code
-    :continent => data.shift,
+    :continent => data.continent_code,
     # * The region name
-    :region => data.shift,
+    :region => data.region_name,
     # * The city name
-    :city => data.shift,
+    :city => data.city_name,
     # * The postal code
-    :postal_code => data.shift,
+    :postal_code => data.postal_code,
     # * The latitude
-    :lat => data.shift,
+    :lat => data.latitude,
     # * The longitude
-    :lng => data.shift,
+    :lng => data.longitude,
     # * The USA dma_code and area_code, if available (REV1 City database)
-    :dma_code => data.shift,
-    :area_code => data.shift,
+    :dma_code => data.dma_code,
+    :area_code => data.area_code,
     # Timezone, if available
-    :timezone => data.shift
+    :timezone => data.timezone,
   }
 end
