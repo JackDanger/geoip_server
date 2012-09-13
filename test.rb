@@ -52,9 +52,26 @@ class GeoipServerTest < Test::Unit::TestCase
     end
   end
 
-  context "converting array" do
+  context "converting struct" do
     setup {
-      array = [
+      Struct.new(
+        "City",
+        :request,
+        :ip,
+        :country_code2,
+        :country_code3,
+        :country_name,
+        :continent_code,
+        :region_name,
+        :city_name,
+        :postal_code,
+        :latitude,
+        :longitude,
+        :dma_code,
+        :area_code,
+        :timezone
+      ) unless defined? Struct::City
+      city = Struct::City.new(
         "67.161.92.71",
         "67.161.92.71",
         "US",
@@ -69,8 +86,8 @@ class GeoipServerTest < Test::Unit::TestCase
         819,
         206,
         "America/Los_Angeles"
-      ]
-      @hash = encode(array)
+      )
+      @hash = encode(city)
     }
     should "find city" do
       assert_equal 'Seattle', @hash[:city]
