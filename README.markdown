@@ -19,12 +19,12 @@ Once the server is running you can make a GET request to the server and receive 
 
     ip = request.remote_ip
     require 'open-uri'
-    data = JSON.decode(open("http://my-geoip-service-app.heroku.com/#{ip}").read)
+    data = JSON.decode(open("http://my-geoip-service-app.herokuapp.com/#{ip}").read)
     render :text => "You're in: #{data[:city]}"
 
 Or, straight from a terminal:
 
-    curl -X POST http://my-geoip-service-app.heroku.com/207.97.227.239
+    curl http://my-geoip-service-app.herokuapp.com/207.97.227.239
 
 Patches welcome, forks celebrated.
 
