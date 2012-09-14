@@ -1,10 +1,11 @@
 ENV['RACK_ENV'] = 'test'
 
-require 'rubygems'
+require 'simplecov'
+SimpleCov.start
 require 'test/unit'
 require 'shoulda'
 require 'rack/test'
-require File.expand_path(File.join(File.dirname(__FILE__), 'lib/geoip_server'))
+require 'geoip_server'
 
 class GeoipServerTest < Test::Unit::TestCase
   include Rack::Test::Methods
