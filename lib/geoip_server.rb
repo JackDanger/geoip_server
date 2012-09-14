@@ -30,9 +30,8 @@ get '/' do
 }
 end
 
-get '/:ip' do
-  pass unless params[:ip] =~ /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/
-  data = GeoIP.new(data_file).city(params[:ip])
+get /\/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})$/ do |ip|
+  data = GeoIP.new(data_file).city(ip)
   content_type 'application/json;charset=ascii-8bit'
   headers['Cache-Control'] = "public; max-age=#{365*24*60*60}"
   return "{}" unless data
