@@ -1,5 +1,4 @@
 ## Resources
-gem 'sinatra', :version => '1.0'
 require 'sinatra'
 require 'geoip'
 require 'multi_json'
