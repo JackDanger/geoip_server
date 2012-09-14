@@ -39,10 +39,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activesupport
   geoip
   i18n
   jeweler
+  multi_json
   newrelic_rpm
   rack-test
   rake
