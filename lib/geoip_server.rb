@@ -1,11 +1,8 @@
-## Resources
 require 'sinatra'
 require 'geoip'
 require 'multi_json'
 
 data_file = File.expand_path(File.join(File.dirname(__FILE__), '..', 'vendor', 'GeoLiteCity.dat'))
-
-## Application
 
 configure :production do
   ENV['APP_ROOT'] ||= File.dirname(__FILE__)
@@ -35,14 +32,10 @@ end
 
 get '/:ip' do
   pass unless params[:ip] =~ /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/
-
   data = GeoIP.new(data_file).city(params[:ip])
-
   content_type 'application/json;charset=ascii-8bit'
   headers['Cache-Control'] = "public; max-age=#{365*24*60*60}"
-
   return "{}" unless data
-
   respond_with(MultiJson.encode(encode(data)))
 end
 
@@ -62,32 +55,31 @@ end
 
 def encode data
   {
-    # * The host or IP address string as requested
+    # The host or IP address string as requested
     :ip => data.request,
-    # * The IP address string after looking up the host
+    # The IP address string after looking up the host
     :ip_lookup => data.ip,
-    # * The GeoIP country-ID as an integer
-    # :country_id => data.shift,
-    # * The ISO3166-1 two-character country code
+    # The ISO3166-1 two-character country code
     :country_code => data.country_code2,
-    # * The ISO3166-2 three-character country code
+    # The ISO3166-2 three-character country code
     :country_code_long => data.country_code3,
-    # * The ISO3166 English-language name of the country
+    # The ISO3166 English-language name of the country
     :country => data.country_name,
-    # * The two-character continent code
+    # The two-character continent code
     :continent => data.continent_code,
-    # * The region name
+    # The region name
     :region => data.region_name,
-    # * The city name
+    # The city name
     :city => data.city_name,
-    # * The postal code
+    # The postal code
     :postal_code => data.postal_code,
-    # * The latitude
+    # The latitude
     :lat => data.latitude,
-    # * The longitude
+    # The longitude
     :lng => data.longitude,
-    # * The USA dma_code and area_code, if available (REV1 City database)
+    # The USA DMA code, if available
     :dma_code => data.dma_code,
+    # The area code, if available
     :area_code => data.area_code,
     # Timezone, if available
     :timezone => data.timezone,
