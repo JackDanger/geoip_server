@@ -21,7 +21,7 @@ class GeoipServerTest < Test::Unit::TestCase
     should "return ok" do
       assert last_response.ok?
     end
-    should "have some kind of welcome" do
+    should "include an example" do
       assert last_response.body =~ /curl/
     end
   end
@@ -33,8 +33,23 @@ class GeoipServerTest < Test::Unit::TestCase
     should "return ok" do
       assert last_response.ok?
     end
-    should "return json conent-type" do
+    should "return json content-type" do
       assert_equal 'application/json;charset=ascii-8bit', last_response.headers['Content-Type']
+    end
+  end
+
+  context "on GET to /:ip?variable=myVariableName" do
+    setup {
+      get '/67.161.92.71?variable=myVariableName'
+    }
+    should "return ok" do
+      assert last_response.ok?
+    end
+    should "return json content-type" do
+      assert_equal 'application/json;charset=ascii-8bit', last_response.headers['Content-Type']
+    end
+    should "include a variable" do
+      assert last_response.body =~ /var myVariableName/
     end
   end
 
@@ -48,8 +63,26 @@ class GeoipServerTest < Test::Unit::TestCase
     should "return json content-type" do
       assert_equal 'application/json;charset=ascii-8bit', last_response.headers['Content-Type']
     end
-    should "have a function as result" do
+    should "include a function" do
       assert last_response.body =~ /myCallbackFunction\(\{.*\}\)/
+    end
+  end
+
+  context "on GET to /:ip?callback=myCallbackFunction&variable=myVariableName" do
+    setup {
+      get '/67.161.92.71?callback=myCallbackFunction&variable=myVariableName'
+    }
+    should "return ok" do
+      assert last_response.ok?
+    end
+    should "return json content-type" do
+      assert_equal 'application/json;charset=ascii-8bit', last_response.headers['Content-Type']
+    end
+    should "include a variable" do
+      assert last_response.body =~ /var myVariableName/
+    end
+    should "include a function" do
+      assert last_response.body =~ /myCallbackFunction\(myVariableName\);/
     end
   end
 
