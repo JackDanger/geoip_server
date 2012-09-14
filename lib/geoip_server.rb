@@ -12,19 +12,53 @@ configure :production do
 end
 
 get '/' do
-  %Q{
-    <html><title>Detect a computer's location by IP address</title>
-    <body style='line-height: 1.8em; font-family: Archer, Museo, Helvetica, Georgia; font-size 25px; text-align: center; padding-top: 20%;'>
+<<END
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+      body {
+        font-family: Archer, Museo, Helvetica, Georgia;
+        margin: 0;
+        padding-top: 20%;
+        text-align: center;
+      }
+      code {
+        background-color: #eee;
+        display: block;
+        font-family: Iconsolata, monospace;
+        font-weight: 700;
+        line-height: 2.0em;
+      }
+      form {
+        margin-top: 20px;
+      }
+      input, button {
+        border-radius: 3px;
+        font-size: 1.0em;
+        padding: 5px;
+      }
+    </style>
+    <title>Detect a computer's location by IP address</title>
+  </head>
+  <body>
+    <h4>
       Lookup a location by IP address. Example:
-      <pre style='font-family: Iconsolata, monospace;background-color:#EEE'>curl http://#{request.host}/207.97.227.239</pre>
-      <br />
-      <form action=/ method=GET onsubmit='if(\"\"==this.ip.value)return false;else{this.action=\"/\"+this.ip.value}'>
-        <input type=text name='ip' value='#{request.env['HTTP_X_REAL_IP']}' />
-        <input type=submit value='Lookup!' />
-      </form>
-      <div>None of this would be possible without <a href='http://www.maxmind.com/app/geolitecity'>MaxMind</a></div>
-    </body></html>
-}
+    </h4>
+    <code>
+      curl http://#{request.env['HTTP_HOST']}/207.97.227.239
+    </code>
+    <form action="/" method="get" onsubmit="if(this.ip.value) { this.action = '/' + this.ip.value } else { return false }">
+      <input type="text" name="ip" value="#{request.env['HTTP_X_REAL_IP']}">
+      <button type="submit">Lookup!</button>
+    </form>
+    <p>
+      None of this would be possible without <a href="http://www.maxmind.com/app/geolite">MaxMind</a>.
+    </p>
+  </body>
+</html>
+END
 end
 
 get /\/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})$/ do |ip|
