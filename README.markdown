@@ -17,10 +17,17 @@ This simple Rack server is useful as a self-hosted service for making lookups to
 
 Once the server is running you can make a GET request to the server and receive lookup results in JSON format.
 
-    ip = request.remote_ip
-    require 'open-uri'
-    data = JSON.decode(open("http://my-geoip-service-app.herokuapp.com/#{ip}").read)
-    render :text => "You're in: #{data[:city]}"
+```ruby
+require 'json'
+require 'open-uri'
+# Get the requesting user's IP address
+# In a Rails app, you can use: request.remote_ip
+# In a Sinatra app, you can use: request.ip
+# In a Rack app, you can use: @env['REMOTE_ADDR']
+ip = "207.97.227.239"
+data = JSON.load(open("http://my-geoip-service-app.herokuapp.com/#{ip}").read)
+"You're in: #{data['city']}"
+```
 
 Or, straight from a terminal:
 
