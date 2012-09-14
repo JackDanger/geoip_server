@@ -12,7 +12,6 @@ Gem::Specification.new do |s|
   s.summary = s.description
   s.add_dependency 'sinatra', '~> 1.1'
   s.add_dependency 'geoip', '~> 1.1'
-  s.add_dependency 'i18n', '~> 0.6'
   s.add_dependency 'multi_json', '~> 1.3'
   s.add_dependency 'newrelic_rpm', '~> 3.4'
   s.add_development_dependency 'rake'
