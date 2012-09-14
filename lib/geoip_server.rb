@@ -5,12 +5,9 @@ require 'multi_json'
 data_file = File.expand_path(File.join(File.dirname(__FILE__), '..', 'vendor', 'GeoLiteCity.dat'))
 
 configure :production do
-  ENV['APP_ROOT'] ||= File.dirname(__FILE__)
   begin
-    $:.unshift "#{ENV['APP_ROOT']}/vendor/plugins/newrelic_rpm/lib"
     require 'newrelic_rpm'
   rescue LoadError
-  rescue
   end
 end
 
