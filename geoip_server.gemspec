@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'geoip_server'
-  s.version = '1.2.0'
-  s.authors = ["Jack Danger Canty"]
+  s.version = '1.3.0'
+  s.authors = ["Jack Danger Canty", "Erik Michaels-Ober"]
   s.description = 'Query the MaxMind GeoIP data records via a web service'
   s.email = 'gitcommit@6brand.com'
   s.files = %w(Gemfile Gemfile.lock README.markdown Rakefile config.ru geoip_server.gemspec test.rb)

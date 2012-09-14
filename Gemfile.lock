@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    geoip_server (1.2.0)
+    geoip_server (1.3.0)
       geoip (~> 1.1)
       multi_json (~> 1.3)
       newrelic_rpm (~> 3.4)
